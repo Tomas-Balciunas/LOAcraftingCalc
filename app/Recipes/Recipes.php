@@ -4,12 +4,12 @@ namespace App\Recipes;
 
 class Recipes
 {
-    public function allRecipes (): array
+    public function allRecipes(): array
     {
         return $this->list;
     }
 
-    public function recipe ($target): array
+    public function recipe($target): array
     {
         return $this->list[$target];
     }
@@ -19,45 +19,42 @@ class Recipes
             'recipe' => [
                 'Wild Flower' => 48,
                 'Shy Wild Flower' => 24,
-                'Bring Wild Flower' => 6
+                'Bright Wild Flower' => 6
             ],
-            'stats' => [
-                'cost' => 30,
-                'amount' => 3,
-                'energy' => 288,
-                'time' => 60
-            ]
+            'cost' => 30,
+            'amount' => 3,
+            'energy' => 288,
+            'time' => 60
+
         ],
 
         'Panacea' => [
             'recipe' => [
-                'Crude Mushroom',
-                'Fresh Mushroom',
-                'Exquisite Mushroom',
-                'Rare Relic'
+                'Crude Mushroom' => 32,
+                'Fresh Mushroom' => 16,
+                'Exquisite Mushroom' => 4,
+                'Rare Relic' => 5
             ],
-            'stats' => [
-                'cost' => 15,
-                'amount' => 3,
-                'energy' => 144,
-                'time' => 30
-            ]
+            'cost' => 15,
+            'amount' => 3,
+            'energy' => 144,
+            'time' => 30
+
         ],
 
         'Atropine Potion' => [
             'recipe' => [
                 'Wild Flower' => 48,
                 'Shy Wild Flower' => 24,
-                'Bring Wild Flower' => 6,
+                'Bright Wild Flower' => 6,
                 'Rare Relic' => 2,
-                'String Iron Ore' => 2
+                'Strong Iron Ore' => 2
             ],
-            'stats' => [
-                'cost' => 30,
-                'amount' => 3,
-                'energy' => 288,
-                'time' => 60
-            ]
+            'cost' => 30,
+            'amount' => 3,
+            'energy' => 288,
+            'time' => 60
+
         ],
 //        '' => [
 //            'recipe' => [

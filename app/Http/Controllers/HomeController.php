@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Actions\calcService;
+use App\Actions\fetchMarketDataAction;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redis;
@@ -12,16 +12,16 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    public function home(calcService $calcService)
+    public function home(fetchMarketDataAction $calcService)
     {
 
         return view('blade.home');
     }
 
-    public function item ($target, calcService $calcService)
-    {
-         return $calcService->handle($target);
-    }
+//    public function item ($target, fetchMarketDataAction $fetchMarketDataAction)
+//    {
+//         return $fetchMarketDataAction->handle($target);
+//    }
 
     public function region ($target)
     {

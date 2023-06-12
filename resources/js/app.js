@@ -21,7 +21,9 @@ const app = createApp({
             })
         },
         region: function (e) {
-            axios.post('/region/' + e.target.value).catch(error => {
+            axios.post('/region/' + e.target.value).then(r => {
+                this.fetchItems();
+            }).catch(error => {
                 console.log(error);
             })
         },

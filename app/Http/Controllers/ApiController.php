@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\craftingCalculationAction;
+use App\Actions\fetchMarketDataAction;
 use App\Http\Controllers\Controller;
 use App\Recipes\Recipes;
 use Illuminate\Http\Request;
@@ -18,12 +20,25 @@ class ApiController extends Controller
         return json_encode($region);
     }
 
-    public function fetchItems (Recipes $recipes): array
+    public function fetchItems (Recipes $recipes, fetchMarketDataAction $fetchMarket, craftingCalculationAction $craftingCalc): array
     {
-        $list = [];
-        $data = $recipes->allRecipes();
-        $list = array_keys($data);
+        $targetIngredients = '?categories=Trader';
+        $targetBattleItems = '?categories=Combat%20Supplies';
+        $itemList = $recipes->allRecipes();
 
-        return $list;
+        if (Cache::has('data1')) {
+            $marketData = Cache::get('data');
+        } else {
+            $ingredients = $fetchMarket->handleApi($targetIngredients);
+            $battleItems = $fetchMarket->handleApi($targetBattleItems);
+            $marketData = [
+                'ingredients' => $ingredients,
+                'battleItems' => $battleItems
+            ];
+
+            Cache::put('data', $marketData);
+        }
+
+        return $craftingCalc->handleCalculation($marketData, $itemList);
     }
 }
