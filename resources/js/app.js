@@ -37,6 +37,7 @@ const app = createApp({
         fetchItems: function () {
             axios.get('/api/items').then(r => {
                 this.items = r.data
+                console.log(this.items)
             }).catch(error => {
                 console.log(error);
             })

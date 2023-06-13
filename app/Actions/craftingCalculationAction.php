@@ -13,7 +13,7 @@ class craftingCalculationAction
         $ingredients = Arr::mapWithKeys($market['ingredients'], function (array $item, string $key) {
             return array(
                 $item['name'] => [
-                    'price' => $item['recentPrice'],
+                    'price' => $item['lowPrice'],
                     'amount' => $item['amount']
                 ]);
         });
@@ -27,7 +27,6 @@ class craftingCalculationAction
             $result[$key] = $this->calculate($ingredients, $item, $battleItems, $key);
         }
 
-        print_r($result);
         return $result;
     }
 
@@ -40,11 +39,11 @@ class craftingCalculationAction
         {
             $ingredient = $ingredients[$key];
             $pricePerUnit = bcdiv($ingredient['price'], $ingredient['amount'], 2);
-            $result['recipe'][$key] = bcmul($units, $pricePerUnit, 2);
-            $result['totalCost'] = bcadd($result['totalCost'], $result['recipe'][$key], 2);
+            $result['recipe'][$key] = round(bcmul($units, $pricePerUnit, 2));
+            $result['totalCost'] = round($result['totalCost'] + $result['recipe'][$key]);
         }
 
-        $result['marketValue'] = bcmul($battleItems[$name], $item['amount'], 2);
+        $result['marketValue'] = bcmul($battleItems[$name], $item['amount']);
 
         return $result;
     }

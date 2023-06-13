@@ -2,8 +2,8 @@
 @section('content')
 
     @{{ huh }}
-{{--<div class="buttons">--}}
-{{--    <button v-for="(item) in items" @click="getItem(item)">@{{  item }}</button>--}}
-{{--</div>--}}
+<div class="buttons">
+    <button v-for="(item, key) in items" >@{{  key }}</button>
+</div>
 
 @endsection

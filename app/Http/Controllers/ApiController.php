@@ -25,9 +25,10 @@ class ApiController extends Controller
         $targetIngredients = '?categories=Trader';
         $targetBattleItems = '?categories=Combat%20Supplies';
         $itemList = $recipes->allRecipes();
+        $region = Cache::get('region');
 
-        if (Cache::has('data1')) {
-            $marketData = Cache::get('data');
+        if (Cache::has($region . ' Data')) {
+            $marketData = Cache::get($region . ' Data');
         } else {
             $ingredients = $fetchMarket->handleApi($targetIngredients);
             $battleItems = $fetchMarket->handleApi($targetBattleItems);
@@ -36,7 +37,7 @@ class ApiController extends Controller
                 'battleItems' => $battleItems
             ];
 
-            Cache::put('data', $marketData);
+            Cache::put($region . ' Data', $marketData, 7200);
         }
 
         return $craftingCalc->handleCalculation($marketData, $itemList);
