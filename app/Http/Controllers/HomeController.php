@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function region ($target)
     {
         //Redis::set('region', $target);
+        Cache::delete('region');
         Cache::put('region', $target);
     }
 }
