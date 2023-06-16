@@ -41,14 +41,18 @@
                     </ul>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between font-bold">
                     <span>Total crafting cost: </span>
                     <span>@{{ item.totalCost }}</span>
                 </div>
 
-                <div class="flex justify-between">
+                <div class="flex justify-between font-bold">
                     <span>Market value</span>
                     <span>@{{ item.marketValue }}</span>
+                </div>
+
+                <div v-if="componentLoaded">
+                    <crafting-efficiency :data="[item.totalCost, item.marketValue]"></crafting-efficiency>
                 </div>
 
             </div>

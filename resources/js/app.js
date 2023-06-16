@@ -1,6 +1,6 @@
 import './bootstrap';
 import { createApp } from 'vue';
-import ExampleComponent from './components/ExampleComponent.vue';
+import CraftingEfficiency from './components/CraftingEfficiency.vue';
 
 const app = createApp({
     data() {
@@ -9,6 +9,7 @@ const app = createApp({
             items: '',
             item: [],
             selectedRegion: '',
+            componentLoaded: false
         }
     },
     methods: {
@@ -54,10 +55,12 @@ const app = createApp({
                 const key = Object.keys(this.items);
                 this.getItem(key[0]);
             }
+
+            this.componentLoaded = true;
         });
     }
 });
 
-app.component('example-component', ExampleComponent);
+app.component('crafting-efficiency', CraftingEfficiency);
 
 app.mount('#app');
