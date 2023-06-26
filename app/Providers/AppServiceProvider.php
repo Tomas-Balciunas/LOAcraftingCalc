@@ -21,9 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $default = 'Europe Central';
         //Redis::set('region', 'Europe Central', 'NX');
         if (!Cache::has('region')) {
-            Cache::put('region', 'Europe Central');
+            Cache::put('region', $default);
         }
     }
 }

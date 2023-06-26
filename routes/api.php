@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/region', [ApiController::class, 'fetchRegion']);
-Route::get('/items', [ApiController::class, 'fetchItems']);
+Route::get('/items/{target}', [ApiController::class, 'fetchItems']);

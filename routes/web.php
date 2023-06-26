@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
-Route::post('/item/{target}', [HomeController::class, 'item']);
+Route::get('/{any}', function () {
+    return view('blade.home');
+})->where('any', '.*');
+
+//Route::get('/', [HomeController::class, 'home']);
+////Route::post('/item/{target}', [HomeController::class, 'item']);
 Route::post('/region/{target}', [HomeController::class, 'region']);
